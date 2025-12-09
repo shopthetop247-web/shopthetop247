@@ -1,31 +1,33 @@
-'use client'
-import Link from 'next/link'
-import { useEffect, useState } from 'react'
+// /components/Header.js
+import Link from "next/link";
 
-export default function Header(){
-  const [theme, setTheme] = useState('light')
-  useEffect(()=>{
-    const t = localStorage.getItem('theme') || 'light'
-    setTheme(t); document.documentElement.setAttribute('data-theme', t === 'dark' ? 'dark' : 'light')
-  }, [])
-  function toggle(){ const next = theme === 'dark' ? 'light' : 'dark'; setTheme(next); localStorage.setItem('theme', next); document.documentElement.setAttribute('data-theme', next === 'dark' ? 'dark' : 'light') }
+export default function Header() {
   return (
-    <header className="bg-white border-b py-4">
-      <div className="container flex items-center justify-between">
-        <Link href="/" className="flex items-center gap-3">
-          <img src="/images/logo.png" alt="shopthetop247" className="h-10 w-10 object-contain" />
-          <div>
-            <div className="font-bold text-lg">shopthetop247</div>
-            <div className="text-xs text-gray-500">LEARN • SHOP • SAVE</div>
-          </div>
+    <header className="sticky top-0 z-50 bg-white shadow-sm">
+      <div className="max-w-6xl mx-auto px-4 py-3 flex items-center justify-between">
+        
+        {/* Left: Logo */}
+        <Link href="/" className="flex items-center gap-2">
+          <img 
+            src="/logo.png" 
+            alt="shopthetop247 logo" 
+            className="h-10 w-auto"  // << Fixes logo size across the site
+          />
+          <span className="text-xl font-bold">shopthetop247</span>
         </Link>
-        <nav className="hidden md:flex items-center gap-6 text-sm text-gray-600">
-          <Link href="/products">Products</Link>
-          <Link href="/blog">Blog</Link>
-          <Link href="/reviews">Reviews</Link>
-          <button onClick={toggle} className="px-3 py-1 border rounded">{theme === 'dark' ? 'Light' : 'Dark'}</button>
-        </nav>
+
+        {/* Center: Search */}
+        <div className="hidden sm:block flex-1 mx-6">
+          <input
+            type="text"
+            placeholder="Search products..."
+            className="w-full border border-gray-300 rounded-xl px-4 py-2"
+          />
+        </div>
+
+        {/* Right: Placeholder for future items */}
+        <div className="w-8"></div>
       </div>
     </header>
-  )
+  );
 }
