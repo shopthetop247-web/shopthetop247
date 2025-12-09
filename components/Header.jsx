@@ -11,7 +11,7 @@ export default function Header() {
           <img 
             src="/logo.png" 
             alt="shopthetop247 logo" 
-            className="h-20 w-auto"  // << Fixes logo size across the site
+            className="h-14 w-auto"  // << Fixes logo size across the site
           />
           <span className="text-xl font-bold">shopthetop247</span>
         </Link>
