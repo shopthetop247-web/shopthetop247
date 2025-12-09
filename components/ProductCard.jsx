@@ -13,7 +13,7 @@ export default function ProductCard({product}){
           </div>
           <div className="flex flex-col gap-2">
             <a href={product.affiliateUrl} target="_blank" rel="noopener noreferrer sponsored" className="inline-flex items-center px-4 py-2 bg-green-500 text-white rounded-xl text-sm">Buy</a>
-            <Link href={`/products/${product.id}`} className="text-xs text-gray-600">Details</Link>
+            <Link href={`/products/${product.id}`} className="text-s text-gray-600">Details</Link>
           </div>
         </div>
       </div>
