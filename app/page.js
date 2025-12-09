@@ -18,8 +18,8 @@ export default function Home() {
           <Image 
             src="/logo.png" 
             alt="ShopTheTop247 Logo"
-            width={461}       // <— Increased logo size
-            height={307}
+            width={360}       // <— Increased logo size
+            height={240}
             priority
           />
           <h1 className="text-4xl font-extrabold">
