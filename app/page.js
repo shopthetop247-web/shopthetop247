@@ -1,3 +1,7 @@
+<div className="flex justify-center mt-6">
+  <img src="/logo.png" alt="shopthetop247 logo" className="h-20 w-auto" />
+</div>
+
 import Image from 'next/image'
 import CategoryTiles from '../components/CategoryTiles'
 import { categories, products } from '../lib/products'
