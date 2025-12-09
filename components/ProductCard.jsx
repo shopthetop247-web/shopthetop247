@@ -5,7 +5,8 @@ export default function ProductCard({product}){
       <img src={product.image} alt={product.name} className="w-full h-48 object-cover" />
       <div className="p-4 flex-1 flex flex-col">
         <h3 className="font-semibold text-lg">{product.name}</h3>
-        <p className="text-sm text-gray-600 mt-1 flex-1">{product.short}</p>
+        <p className="text-sm text-gray-600 mt-1 flex-1">{product.short}</p> 
+        <p className="text-sm text-gray-600 mt-1 flex-1">{product.long}</p>
         <div className="mt-3 flex items-center justify-between">
           <div>
             <div className="text-sm text-gray-700 font-medium">{product.price}</div>
