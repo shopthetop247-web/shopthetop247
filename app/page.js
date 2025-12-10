@@ -30,9 +30,7 @@ export default function Home() {
         <p className="mt-2 text-gray-600">
           Curated products across tech, home, beauty, health, pets and travel. 
           Read our <a href="/blog" className="font-bold text-blue-600 hover:underline">
-  Blog
-</a>
- find reviews, compare, and shop with confidence.
+   blog </a>find reviews, compare, and shop with confidence.
         </p>
 
         <CategoryTiles categories={categories} />
