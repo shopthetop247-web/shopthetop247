@@ -16,11 +16,11 @@ export default function BlogPage() {
           >
             <div className="flex items-start gap-4">
 
-              {/* Right-aligned thumbnail */}
+              {/* Left-aligned thumbnail */}
               <img 
                 src={post.image}
                 alt={post.title}
-                className="w-40 h-32 object-cover rounded-xl ml-auto"
+                className="w-40 h-32 object-cover rounded-xl flex-shrink-0"
               />
 
               {/* Text content */}
