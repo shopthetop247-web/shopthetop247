@@ -9,64 +9,75 @@ export default function Home() {
   const featured = products.slice(0, 3)
 
   return (
-    <section>
-      {/* Header */}
-      <div className="bg-white p-8 rounded-2xl shadow-sm">
+    <section className="space-y-12">
+      
+      {/* Header Section */}
+      <div className="bg-white p-8 rounded-2xl shadow-sm space-y-6">
 
-        {/* Logo + headline */}
-        <div className="flex items-center gap-4 mb-4">
+        {/* Logo + Headline */}
+        <div className="flex items-center gap-6">
           <Image 
             src="/logo.png" 
             alt="ShopTheTop247 Logo"
-            width={240}
-            height={160}
+            width={260}
+            height={180}
             priority
           />
-          <h2 className="text-3xl font-extrabold">
+
+          <h2 className="text-3xl font-extrabold leading-tight">
             Finding new products and tips has never been so easy
           </h2>
         </div>
 
-        {/* Intro text */}
-        <p className="mt-2 text-gray-600">
+        {/* Intro Text */}
+        <p className="text-gray-600 text-lg leading-relaxed">
           Curated products across tech, home, beauty, health, pets and travel. 
-          Read our <a href="/blog" className="font-bold text-blue-600 hover:underline">
+          Read our{" "}
+          <a href="/blog" className="font-bold text-blue-600 hover:underline">
             blog
-          </a>{' '}
+          </a>{" "}
           to find reviews, compare, and shop with confidence.
         </p>
 
         {/* ⭐ Featured Blog Post */}
         {latestPost && (
-          <a 
+          <a
             href={`/blog/${latestPost.slug}`}
-            className="block bg-white p-5 rounded-2xl shadow-sm hover:shadow-md transition mt-8"
+            className="flex bg-white p-5 rounded-2xl shadow-sm hover:shadow-md transition gap-5"
           >
-            <img 
-              src={latestPost.image} 
-              alt={latestPost.title} 
-              className="w-full h-60 object-cover rounded-xl"
+            {/* Left aligned small image */}
+            <img
+              src={latestPost.image}
+              alt={latestPost.title}
+              className="w-48 h-32 object-cover rounded-xl flex-shrink-0"
             />
 
-            <h2 className="mt-4 text-2xl font-semibold">{latestPost.title}</h2>
-            <p className="text-gray-500 text-sm mt-1">{latestPost.date}</p>
-            <p className="text-gray-700 mt-2">{latestPost.excerpt}</p>
+            {/* Post content */}
+            <div>
+              <h2 className="text-2xl font-semibold">{latestPost.title}</h2>
+              <p className="text-gray-500 text-sm mt-1">{latestPost.date}</p>
+              <p className="text-gray-700 mt-2">{latestPost.excerpt}</p>
+            </div>
           </a>
         )}
-
-        {/* Categories */}
-        <CategoryTiles categories={categories} />
       </div>
 
       {/* Featured Products */}
-      <section className="mt-8">
+      <section className="space-y-4">
         <h2 className="text-2xl font-bold">Featured Products</h2>
-        <div className="mt-4 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
           {featured.map((p) => (
             <ProductCard key={p.id} product={p} />
           ))}
         </div>
       </section>
+
+      {/* Categories — moved to bottom */}
+      <section>
+        <CategoryTiles categories={categories} />
+      </section>
+
     </section>
   )
 }
