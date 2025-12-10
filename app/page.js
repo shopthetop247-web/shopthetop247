@@ -38,8 +38,8 @@ export default function Home() {
           </a>{" "}
           to find reviews, compare, and shop with confidence.
         </p>
-          <p className="text-2xl font-extrabold leading-tight">
-           Our Latest Blog Post:
+          <p className="text-1xl font-extrabold leading-tight">
+           Our Latest Post:
         </p>
         {/* ⭐ Featured Blog Post */}
         {latestPost && (
