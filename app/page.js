@@ -9,29 +9,25 @@ export default function Home() {
   const featured = products.slice(0, 3)
 
   return (
-    <section className="space-y-12">
-      
-      {/* Header Section */}
-      <div className="bg-white p-6 rounded-2xl shadow-sm space-y-4">
-        
-        {/* Logo + Headline */}
-        <div className="flex items-center gap-6">
+    <section>
+
+      {/* HEADER */}
+      <div className="bg-white p-6 rounded-2xl shadow-sm">
+        <div className="flex items-center gap-4 mb-2">
           <Image 
             src="/logo.png" 
             alt="ShopTheTop247 Logo"
-            width={240}
-            height={160}
+            width={280}
+            height={180}
             priority
-            className="mt-1"   // Slightly reduces white space visually
           />
-
-          <h2 className="text-3xl font-extrabold leading-tight">
-            Finding new products and tips has never been so easy
-          </h2>
         </div>
 
-        {/* Intro Text */}
-        <p className="text-gray-600 text-lg leading-relaxed">
+        <h2 className="text-3xl font-extrabold mt-2">
+          Finding new products and tips has never been this easy
+        </h2>
+
+        <p className="mt-2 text-gray-600">
           Curated products across tech, home, beauty, health, pets and travel. 
           Read our{" "}
           <a href="/blog" className="font-bold text-blue-600 hover:underline">
@@ -40,52 +36,59 @@ export default function Home() {
           to find reviews, compare, and shop with confidence.
         </p>
 
-        {/* ⭐ Featured Blog Section */}
-{latestPost && (
-  <div className="space-y-4 mt-8">
+        {/* FEATURED BLOG LABEL */}
+        {latestPost && (
+          <>
+            <div className="flex items-center gap-2 mt-10 mb-3">
+              <span className="inline-block h-6 w-1 rounded-full bg-indigo-400"></span>
+              <h3 className="text-xl font-semibold text-gray-800">
+                Featured Blog
+              </h3>
+            </div>
 
-    {/* Label */}
-    <h3 className="text-xl font-bold text-gray-800">
-      Featured Blog
-    </h3>
+            {/* FEATURED BLOG CARD */}
+            <a 
+              href={`/blog/${latestPost.slug}`}
+              className="block bg-gradient-to-r from-indigo-50 to-teal-50 p-5 rounded-2xl shadow-sm hover:shadow-md transition"
+            >
+              <div className="flex gap-4 items-start">
 
-    {/* Featured post card */}
-    <a
-      href={`/blog/${latestPost.slug}`}
-      className="block bg-white p-5 rounded-2xl shadow-sm hover:shadow-md transition"
-    >
-      <img 
-        src={latestPost.image} 
-        alt={latestPost.title} 
-        className="w-48 h-32 object-cover rounded-xl float-left mr-5 mb-2"
-      />
+                {/* Small left-aligned image */}
+                <img 
+                  src={latestPost.image}
+                  alt={latestPost.title}
+                  className="w-40 h-32 object-cover rounded-xl flex-shrink-0"
+                />
 
-      <h2 className="text-2xl font-semibold">{latestPost.title}</h2>
-      <p className="text-gray-500 text-sm mt-1">{latestPost.date}</p>
-      <p className="text-gray-700 mt-2">
-        {latestPost.excerpt}
-      </p>
+                {/* Text */}
+                <div>
+                  <h2 className="text-2xl font-semibold">{latestPost.title}</h2>
+                  <p className="text-gray-500 text-sm mt-1">{latestPost.date}</p>
+                  <p className="text-gray-700 mt-2 line-clamp-3">{latestPost.excerpt}</p>
+                </div>
 
-      <div className="clear-both"></div>
-    </a>
+              </div>
+            </a>
 
-    {/* View All Blog Posts Button */}
-    <div>
-      <a 
-        href="/blog" 
-        className="inline-block px-5 py-2 bg-blue-600 text-white rounded-xl font-semibold hover:bg-blue-700 transition"
-      >
-        View All Blog Posts
-      </a>
-    </div>
-  </div>
-)}
-
+            {/* VIEW ALL BUTTON */}
+            <div className="mt-4">
+              <a
+                href="/blog"
+                className="inline-block px-5 py-2 bg-indigo-500 text-white rounded-xl font-medium hover:bg-indigo-600 transition"
+              >
+                View All Blog Posts
+              </a>
+            </div>
+          </>
+        )}
       </div>
 
-      {/* Featured Products */}
-      <section className="space-y-4">
-        <h2 className="text-2xl font-bold">Featured Products</h2>
+      {/* FEATURED PRODUCTS */}
+      <section className="mt-10">
+        <div className="flex items-center gap-2 mb-3">
+          <span className="inline-block h-6 w-1 bg-teal-500 rounded-full"></span>
+          <h2 className="text-2xl font-bold">Featured Products</h2>
+        </div>
 
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
           {featured.map((p) => (
@@ -94,8 +97,13 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Categories — bottom of page */}
-      <section>
+      {/* CATEGORY BUTTONS - now moved to bottom */}
+      <section className="mt-12">
+        <div className="flex items-center gap-2 mb-4">
+          <span className="inline-block h-6 w-1 bg-purple-400 rounded-full"></span>
+          <h2 className="text-2xl font-bold">Browse Categories</h2>
+        </div>
+
         <CategoryTiles categories={categories} />
       </section>
 
