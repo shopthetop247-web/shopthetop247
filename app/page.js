@@ -22,7 +22,7 @@ export default function Home() {
             height={160}
             priority
           />
-          <h2 className="text-4xl font-extrabold">
+          <h2 className="text-3xl font-extrabold">
             Finding new products and tips has never been so easy
           </h2>
         </div>
