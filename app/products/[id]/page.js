@@ -5,6 +5,13 @@ export default function ProductPage({ params }) {
 
   if (!product) return <p>Product not found.</p>
 
+  // Format long description into paragraphs
+  const paragraphs = product.long
+    ? product.long
+        .split(/\n\s*\n/) // split on blank lines
+        .map(p => p.trim())
+    : []
+
   return (
     <section className="bg-white p-6 rounded-2xl shadow-sm">
       <img 
@@ -30,13 +37,16 @@ export default function ProductPage({ params }) {
         Buy Now
       </a>
 
-      {/* Long Description — only shows if provided */}
-      {product.long && (
+      {/* Long Description rendered as paragraphs */}
+      {paragraphs.length > 0 && (
         <div className="mt-8 border-t pt-6">
           <h2 className="text-2xl font-semibold mb-3">Product Details</h2>
-          <p className="text-gray-700 leading-relaxed whitespace-pre-line">
-            {product.long}
-          </p>
+
+          <div className="space-y-4 text-gray-700 leading-relaxed">
+            {paragraphs.map((p, idx) => (
+              <p key={idx}>{p}</p>
+            ))}
+          </div>
         </div>
       )}
     </section>
