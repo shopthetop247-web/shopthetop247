@@ -29,6 +29,16 @@ export default function ProductPage({ params }) {
       >
         Buy Now
       </a>
+
+      {/* Long Description — only shows if provided */}
+      {product.long && (
+        <div className="mt-8 border-t pt-6">
+          <h2 className="text-2xl font-semibold mb-3">Product Details</h2>
+          <p className="text-gray-700 leading-relaxed whitespace-pre-line">
+            {product.long}
+          </p>
+        </div>
+      )}
     </section>
   )
 }
