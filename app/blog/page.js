@@ -14,15 +14,23 @@ export default function BlogPage() {
             href={`/blog/${post.slug}`}
             className="block bg-white p-5 rounded-2xl shadow-sm hover:shadow-md transition"
           >
-            <img 
-              src={post.image} 
-              alt={post.title} 
-              className="w-full h-60 object-cover rounded-xl"
-            />
+            <div className="flex items-start gap-4">
 
-            <h2 className="mt-4 text-2xl font-semibold">{post.title}</h2>
-            <p className="text-gray-500 text-sm mt-1">{post.date}</p>
-            <p className="text-gray-700 mt-2">{post.excerpt}</p>
+              {/* Right-aligned thumbnail */}
+              <img 
+                src={post.image}
+                alt={post.title}
+                className="w-40 h-32 object-cover rounded-xl ml-auto"
+              />
+
+              {/* Text content */}
+              <div>
+                <h2 className="text-2xl font-semibold">{post.title}</h2>
+                <p className="text-gray-500 text-sm mt-1">{post.date}</p>
+                <p className="text-gray-700 mt-2">{post.excerpt}</p>
+              </div>
+
+            </div>
           </a>
         ))}
       </div>
