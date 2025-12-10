@@ -12,16 +12,17 @@ export default function Home() {
     <section className="space-y-12">
       
       {/* Header Section */}
-      <div className="bg-white p-8 rounded-2xl shadow-sm space-y-6">
-
+      <div className="bg-white p-6 rounded-2xl shadow-sm space-y-4">
+        
         {/* Logo + Headline */}
         <div className="flex items-center gap-6">
           <Image 
             src="/logo.png" 
             alt="ShopTheTop247 Logo"
-            width={260}
-            height={180}
+            width={240}
+            height={160}
             priority
+            className="mt-1"   // Slightly reduces white space visually
           />
 
           <h2 className="text-3xl font-extrabold leading-tight">
@@ -38,30 +39,48 @@ export default function Home() {
           </a>{" "}
           to find reviews, compare, and shop with confidence.
         </p>
-          <p className="text-1xl font-extrabold leading-tight">
-           Our Latest Post:
-        </p>
-        {/* ⭐ Featured Blog Post */}
-        {latestPost && (
-          <a
-            href={`/blog/${latestPost.slug}`}
-            className="flex bg-white p-5 rounded-2xl shadow-sm hover:shadow-md transition gap-5"
-          >
-            {/* Left aligned small image */}
-            <img
-              src={latestPost.image}
-              alt={latestPost.title}
-              className="w-48 h-32 object-cover rounded-xl flex-shrink-0"
-            />
 
-            {/* Post content */}
-            <div>
-              <h2 className="text-2xl font-semibold">{latestPost.title}</h2>
-              <p className="text-gray-500 text-sm mt-1">{latestPost.date}</p>
-              <p className="text-gray-700 mt-2">{latestPost.excerpt}</p>
-            </div>
-          </a>
-        )}
+        {/* ⭐ Featured Blog Section */}
+{latestPost && (
+  <div className="space-y-4 mt-8">
+
+    {/* Label */}
+    <h3 className="text-xl font-bold text-gray-800">
+      Featured Blog
+    </h3>
+
+    {/* Featured post card */}
+    <a
+      href={`/blog/${latestPost.slug}`}
+      className="block bg-white p-5 rounded-2xl shadow-sm hover:shadow-md transition"
+    >
+      <img 
+        src={latestPost.image} 
+        alt={latestPost.title} 
+        className="w-48 h-32 object-cover rounded-xl float-left mr-5 mb-2"
+      />
+
+      <h2 className="text-2xl font-semibold">{latestPost.title}</h2>
+      <p className="text-gray-500 text-sm mt-1">{latestPost.date}</p>
+      <p className="text-gray-700 mt-2">
+        {latestPost.excerpt}
+      </p>
+
+      <div className="clear-both"></div>
+    </a>
+
+    {/* View All Blog Posts Button */}
+    <div>
+      <a 
+        href="/blog" 
+        className="inline-block px-5 py-2 bg-blue-600 text-white rounded-xl font-semibold hover:bg-blue-700 transition"
+      >
+        View All Blog Posts
+      </a>
+    </div>
+  </div>
+)}
+
       </div>
 
       {/* Featured Products */}
@@ -75,7 +94,7 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Categories — moved to bottom */}
+      {/* Categories — bottom of page */}
       <section>
         <CategoryTiles categories={categories} />
       </section>
