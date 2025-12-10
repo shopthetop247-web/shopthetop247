@@ -8,14 +8,10 @@ export default function Header() {
 
         {/* Logo */}
         <Link href="/" className="flex items-center gap-3">
-          <img 
-            src="/logo.png" 
-            alt="shopthetop247 logo" 
-            className="h-16 w-auto md:h-16 sm:h-14" 
-          />
-          <span className="text-3xl font-bold hidden sm:block">
-            shopthetop247
-          </span>
+          <div className="flex items-center gap-2">
+          <img src="/logo.png" className="h-8 w-auto" />
+          </div>
+      
         </Link>
 
         {/* Search bar */}
