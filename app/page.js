@@ -42,11 +42,12 @@ export default function Home() {
             href={`/blog/${latestPost.slug}`}
             className="block bg-white p-5 rounded-2xl shadow-sm hover:shadow-md transition mt-8"
           >
-            <img 
-              src={latestPost.image} 
-              alt={latestPost.title} 
-              className="w-full h-60 object-cover rounded-xl"
-            />
+            {/* Left-aligned thumbnail */}
+              <img 
+                src={post.image}
+                alt={post.title}
+                className="w-40 h-32 object-cover rounded-xl flex-shrink-0"
+              />
 
             <h2 className="mt-4 text-2xl font-semibold">{latestPost.title}</h2>
             <p className="text-gray-500 text-sm mt-1">{latestPost.date}</p>
