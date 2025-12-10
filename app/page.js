@@ -23,13 +23,13 @@ export default function Home() {
             priority
           />
           <h1 className="text-4xl font-extrabold">
-            Shop the top picks — fast
+            Finding new products and tips has never been so easy
           </h1>
         </div>
 
         <p className="mt-2 text-gray-600">
           Curated products across tech, home, beauty, health, pets and travel. 
-          Read reviews, compare, and shop with confidence.
+          Read our <a href="/blog" className="hover:underline">blog</a> find reviews, compare, and shop with confidence.
         </p>
 
         <CategoryTiles categories={categories} />
