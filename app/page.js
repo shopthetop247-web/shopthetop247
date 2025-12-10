@@ -22,9 +22,9 @@ export default function Home() {
             height={160}
             priority
           />
-          <h1 className="text-4xl font-extrabold">
+          <h2 className="text-4xl font-extrabold">
             Finding new products and tips has never been so easy
-          </h1>
+          </h2>
         </div>
 
         <p className="mt-2 text-gray-600">
