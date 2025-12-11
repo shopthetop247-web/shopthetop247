@@ -14,13 +14,7 @@ export default function Home() {
       {/* HEADER */}
       <div className="bg-white p-6 rounded-2xl shadow-sm">
         <div className="flex items-center gap-4 mb-2">
-          <Image 
-            src="/logo.png" 
-            alt="ShopTheTop247 Logo"
-            width={280}
-            height={180}
-            priority
-          />
+         
         </div>
 
         <h2 className="text-2xl font-extrabold mt-2">
