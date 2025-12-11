@@ -23,9 +23,14 @@ export default function BlogPostPage({ params }) {
 
         {/* Main content */}
         <div className="prose max-w-none">
-          {post.content.split('\n\n').map((para, i) => (
-            <p key={i} className="mb-4">{para}</p>
-          ))}
+          {post.content.map((para, idx) => (
+        <p 
+          key={idx} 
+          className={`mb-4 ${para.bold ? "font-bold text-lg" : ""}`}
+          >
+           {para.text}
+         </p>
+))}
         </div>
 
       </div>
