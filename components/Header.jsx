@@ -1,33 +1,40 @@
-// /components/Header.js
-import Link from "next/link";
+import Link from 'next/link'
+import Image from 'next/image'
 
 export default function Header() {
   return (
-    <header className="w-full bg-white shadow-sm fixed top-0 left-0 z-50">
-  <div className="max-w-6xl mx-auto flex items-center justify-between py-3 px-4">
+    <header className="bg-white shadow-sm sticky top-0 z-50">
+      <div className="max-w-6xl mx-auto flex items-center justify-between p-4">
 
-    {/* Bigger Logo */}
-    <div className="flex items-center">
-      <Image
-        src="/logo.png"
-        alt="ShopTheTop247 Logo"
-        width={60}
-        height={60}
-        className="mr-3"
-      />
-         </div>
+        {/* BIGGER LOGO */}
+        <Link href="/" className="flex items-center gap-2">
+          <Image 
+            src="/logo.png"
+            alt="ShopTheTop247 Logo"
+            width={70}   // increased from around 45–50
+            height={70}
+            className="object-contain"
+          />
+          <span className="text-xl font-bold">ShopTheTop247</span>
+        </Link>
 
-    {/* Smaller Search Bar */}
-    <div className="hidden md:flex">
-      <input
-        type="text"
-        placeholder="Search…"
-        className="w-48 md:w-64 p-2 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-teal-400"
-      />
-    </div>
+        {/* SMALLER SEARCH BAR */}
+        <div className="flex-1 mx-6">
+          <input
+            type="text"
+            placeholder="Search products, tips, blogs..."
+            className="w-full max-w-md px-3 py-2 border border-gray-300 rounded-lg text-sm focus:ring-2 focus:ring-indigo-400 focus:outline-none"
+          />
+        </div>
 
-  </div>
-</header>
-
-  );
+        {/* RIGHT LINKS */}
+        <nav className="flex items-center gap-4 text-sm font-medium">
+          <Link href="/blog" className="hover:text-indigo-600">Blog</Link>
+          <Link href="/about" className="hover:text-indigo-600">About</Link>
+          <Link href="/contact" className="hover:text-indigo-600">Contact</Link>
+        </nav>
+      </div>
+    </header>
+  )
 }
+
