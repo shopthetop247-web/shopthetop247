@@ -23,12 +23,13 @@ export default function Home() {
           />
         </div>
 
-        <h2 className="text-3xl font-extrabold mt-2">
+        <h2 className="text-2xl font-extrabold mt-2">
           Finding new products and tips has never been this easy
         </h2>
 
         <p className="mt-2 text-gray-600">
-          Curated products across tech, home, beauty, health, pets and travel. 
+          We share handpicked products and smart lifestyle solutions for people who love living well. From wellness 
+          must‑haves to everyday upgrades, it’s all about helping you enjoy a healthier, happier, and more intentional life. 
           Read our{" "}
           <a href="/blog" className="font-bold text-blue-600 hover:underline">
             blog
