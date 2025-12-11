@@ -29,6 +29,7 @@ export default function Header() {
 
         {/* RIGHT LINKS */}
         <nav className="flex items-center gap-4 text-sm font-medium">
+          <Link href="/" className="hover:text-indigo-600">Home</Link>
           <Link href="/blog" className="hover:text-indigo-600">Blog</Link>
           <Link href="/about" className="hover:text-indigo-600">About</Link>
           <Link href="/contact" className="hover:text-indigo-600">Contact</Link>
