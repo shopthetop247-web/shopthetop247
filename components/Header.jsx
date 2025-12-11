@@ -15,10 +15,7 @@ export default function Header() {
         height={60}
         className="mr-3"
       />
-      <span className="text-xl font-semibold tracking-tight">
-        ShopTheTop247
-      </span>
-    </div>
+         </div>
 
     {/* Smaller Search Bar */}
     <div className="hidden md:flex">
