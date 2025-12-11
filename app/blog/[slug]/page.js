@@ -6,34 +6,33 @@ export default function BlogPostPage({ params }) {
   if (!post) return <p>Post not found.</p>
 
   return (
-    <section className="p-6 bg-white rounded-2xl shadow-sm">
-      
-      {/* Title */}
-      <h1 className="text-4xl font-bold">{post.title}</h1>
-      <p className="text-gray-500 mt-1">{post.date}</p>
+    <section className="p-6 max-w-3xl mx-auto">
+      <h1 className="text-4xl font-bold mb-2">{post.title}</h1>
+      <p className="text-gray-500 mb-6">{post.date}</p>
 
-      {/* Left-aligned image next to text */}
-      <div className="flex items-start gap-6 mt-6">
-
-        <img
-          src={post.image}
-          alt={post.title}
-          className="w-48 h-36 object-cover rounded-xl flex-shrink-0"
+      {/* Left-aligned smaller image */}
+      <div className="w-64 mb-6">
+        <img 
+          src={post.image} 
+          alt={post.title} 
+          className="rounded-xl object-cover"
         />
-
-        {/* Main content */}
-        <div className="prose max-w-none">
-          {post.content.map((para, idx) => (
-        <p 
-          key={idx} 
-          className={`mb-4 ${para.bold ? "font-bold text-lg" : ""}`}
-          >
-           {para.text}
-         </p>
-))}
-        </div>
-
       </div>
+
+      {/* Render structured content */}
+      {post.content.paragraphs.map((para, index) => (
+        <p key={index} className="mb-4 text-gray-800 leading-relaxed">
+          {para.map((segment, i) =>
+            segment.type === "bold" ? (
+              <span key={i} className="font-bold">
+                {segment.text}
+              </span>
+            ) : (
+              <span key={i}>{segment.text}</span>
+            )
+          )}
+        </p>
+      ))}
     </section>
   )
 }
