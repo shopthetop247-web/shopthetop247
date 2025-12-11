@@ -11,7 +11,7 @@ export default function Home() {
   return (
     <section>
 
-      {/* HEADER */}
+      {/* HEADER CONTENT BLOCK */}
       <div className="bg-white p-6 rounded-2xl shadow-sm">
             
         <h2 className="text-2xl font-extrabold mt-2">
@@ -20,7 +20,7 @@ export default function Home() {
 
         <p className="mt-2 text-gray-600">
           We share handpicked products and smart lifestyle solutions for people who love living well. From wellness 
-          must‑haves to everyday upgrades, it’s all about helping you enjoy a healthier, happier, and more intentional life. 
+          must-haves to everyday upgrades, it’s all about helping you enjoy a healthier, happier, and more intentional life. 
           Read our{" "}
           <a href="/blog" className="font-bold text-blue-600 hover:underline">
             blog
@@ -45,14 +45,12 @@ export default function Home() {
             >
               <div className="flex gap-4 items-start">
 
-                {/* Small left-aligned image */}
                 <img 
                   src={latestPost.image}
                   alt={latestPost.title}
                   className="w-40 h-32 object-cover rounded-xl flex-shrink-0"
                 />
 
-                {/* Text */}
                 <div>
                   <h2 className="text-2xl font-semibold">{latestPost.title}</h2>
                   <p className="text-gray-500 text-sm mt-1">{latestPost.date}</p>
@@ -62,7 +60,6 @@ export default function Home() {
               </div>
             </a>
 
-            {/* VIEW ALL BUTTON */}
             <div className="mt-4">
               <a
                 href="/blog"
@@ -89,7 +86,7 @@ export default function Home() {
         </div>
       </section>
 
-      {/* CATEGORY BUTTONS - now moved to bottom */}
+      {/* CATEGORY BUTTONS */}
       <section className="mt-12">
         <div className="flex items-center gap-2 mb-4">
           <span className="inline-block h-6 w-1 bg-purple-400 rounded-full"></span>
