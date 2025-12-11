@@ -9,7 +9,7 @@ export default function Header() {
     {/* Bigger Logo */}
     <div className="flex items-center">
       <Image
-        src="/shopthetop247logo.png"
+        src="/logo.png"
         alt="ShopTheTop247 Logo"
         width={60}
         height={60}
