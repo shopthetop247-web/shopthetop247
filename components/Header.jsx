@@ -11,8 +11,8 @@ export default function Header() {
           <Image 
             src="/logo.png"
             alt="ShopTheTop247 Logo"
-            width={160}   // increased from around 45–50
-            height={50}
+            width={190}   // increased from around 45–50
+            height={60}
             className="object-contain"
           />
           
