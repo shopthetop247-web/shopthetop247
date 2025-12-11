@@ -11,11 +11,11 @@ export default function Header() {
           <Image 
             src="/logo.png"
             alt="ShopTheTop247 Logo"
-            width={70}   // increased from around 45–50
-            height={70}
+            width={80}   // increased from around 45–50
+            height={80}
             className="object-contain"
           />
-          <span className="text-xl font-bold">ShopTheTop247</span>
+          
         </Link>
 
         {/* SMALLER SEARCH BAR */}
