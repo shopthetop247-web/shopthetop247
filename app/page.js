@@ -15,7 +15,7 @@ export default function Home() {
       <div className="bg-white p-6 rounded-2xl shadow-sm">
         <div className="flex items-center gap-4 mb-2">
                  </div>
-
+    
         <h2 className="text-2xl font-extrabold mt-2">
           Finding new products and tips has never been this easy
         </h2>
