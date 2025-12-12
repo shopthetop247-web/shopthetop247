@@ -2,7 +2,7 @@ import Link from 'next/link'
 export default function ProductCard({product}){
   return (
     <article className="bg-white rounded-2xl shadow-sm overflow-hidden flex flex-col">
-      <img src={product.image} alt={product.name} className="w-full h-32 object-cover" />
+      <img src={product.image} alt={product.name} className="w-full h-32 object-cover object-center rounded-t-xl" />
       <div className="p-4 flex-1 flex flex-col">
         <h3 className="font-semibold text-lg">{product.name}</h3>
         <p className="text-sm text-gray-600 mt-1 flex-1">{product.short}</p> 
