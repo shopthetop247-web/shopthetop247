@@ -15,7 +15,7 @@ export default function Home() {
       <div className="bg-white p-6 rounded-2xl shadow-sm">
             
         <h2 className="text-2xl font-extrabold mt-2">
-          Finding new products and tips has never been this easy
+          All the dope ass stuff you see on Tik Tok, Instagram, X, Pinterest and that other b.s.
         </h2>
 
         <p className="mt-2 text-gray-600">
