@@ -1,54 +1,64 @@
-import { getProductById } from '../../../lib/products'
+import { products } from '../../../lib/products'
 
 export default function ProductPage({ params }) {
-  const product = getProductById(params.id)
+  const product = products.find(p => p.id === params.id)
 
-  if (!product) return <p>Product not found.</p>
-
-  // Format long description into paragraphs
-  const paragraphs = product.long
-    ? product.long
-        .split(/\n\s*\n/) // split on blank lines
-        .map(p => p.trim())
-    : []
+  if (!product) {
+    return <p className="p-6">Product not found.</p>
+  }
 
   return (
-    <section className="bg-white p-6 rounded-2xl shadow-sm">
-      <img 
-        src={product.image}
-        alt={product.name}
-        className="w-full h-80 object-cover rounded-xl"
-      />
+    <section className="p-6 max-w-4xl mx-auto">
+      
+      {/* Product Card Layout */}
+      <div className="bg-white rounded-2xl shadow-sm p-6 flex gap-6">
 
-      <h1 className="mt-6 text-3xl font-bold">{product.name}</h1>
-      <p className="text-gray-600 mt-2">{product.short}</p>
+        {/* Larger left-aligned image */}
+        <img
+          src={product.image}
+          alt={product.name}
+          className="w-72 h-60 object-cover rounded-2xl flex-shrink-0"
+        />
 
-      <div className="mt-4 flex items-center gap-6">
-        <span className="text-xl font-semibold">{product.price}</span>
-        <span className="text-gray-500">{product.rating} ★</span>
-      </div>
+        {/* Product details */}
+        <div className="flex flex-col flex-1">
+          <h1 className="text-3xl font-bold text-gray-900">
+            {product.name}
+          </h1>
 
-      <a 
-        href={product.affiliateUrl} 
-        target="_blank" 
-        rel="noopener noreferrer sponsored"
-        className="block bg-green-500 text-white px-6 py-3 rounded-xl text-center mt-6"
-      >
-        Buy Now
-      </a>
+          <div className="mt-2 text-lg font-medium text-gray-800">
+            {product.price}
+          </div>
 
-      {/* Long Description rendered as paragraphs */}
-      {paragraphs.length > 0 && (
-        <div className="mt-8 border-t pt-6">
-          <h2 className="text-2xl font-semibold mb-3">Product Details</h2>
+          <div className="text-sm text-gray-500 mt-1">
+            {product.rating} ★ rating
+          </div>
 
-          <div className="space-y-4 text-gray-700 leading-relaxed">
-            {paragraphs.map((p, idx) => (
-              <p key={idx}>{p}</p>
-            ))}
+          <p className="mt-4 text-gray-700 leading-relaxed">
+            {product.description}
+          </p>
+
+          <div className="mt-6 flex gap-4">
+            <a
+              href={product.affiliateUrl}
+              target="_blank"
+              rel="noopener noreferrer sponsored"
+              className="px-6 py-3 bg-green-500 text-white rounded-xl font-medium hover:bg-green-600 transition"
+            >
+              Buy Now
+            </a>
+
+            <a
+              href="/products"
+              className="px-6 py-3 bg-gray-100 text-gray-700 rounded-xl hover:bg-gray-200 transition"
+            >
+              Back to Products
+            </a>
           </div>
         </div>
-      )}
+      </div>
+
     </section>
   )
 }
+
