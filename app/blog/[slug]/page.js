@@ -1,5 +1,19 @@
 import { getPostBySlug } from '../../../lib/posts'
 
+export async function generateMetadata({ params }) {
+  const post = getPostBySlug(params.slug)
+
+  if (!post) {
+    return { title: "Post Not Found" }
+  }
+
+  return {
+    title: `${post.title} | ShopTheTop247® Blog`,
+    description: post.excerpt,
+  }
+}
+
+
 // Converts **bold** into <strong>bold</strong>
 function formatBold(text) {
   return text.replace(/\*\*(.*?)\*\*/g, "<strong>$1</strong>")
