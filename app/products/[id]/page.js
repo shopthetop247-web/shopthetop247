@@ -1,7 +1,7 @@
 import { getProductById } from '../../../lib/products'
 
 /* ===========================
-   SEO (Dynamic Per Product)
+   SEO (Dynamic Metadata)
    =========================== */
 export async function generateMetadata({ params }) {
   const product = getProductById(params.id)
@@ -20,7 +20,7 @@ export async function generateMetadata({ params }) {
 }
 
 /* ===========================
-   PAGE COMPONENT (UNCHANGED)
+   PAGE COMPONENT
    =========================== */
 export default function ProductPage({ params }) {
   const product = getProductById(params.id)
@@ -29,8 +29,43 @@ export default function ProductPage({ params }) {
     return <p className="p-6">Product not found.</p>
   }
 
+  /* ===========================
+     PRODUCT SCHEMA (JSON-LD)
+     =========================== */
+  const productSchema = {
+    "@context": "https://schema.org",
+    "@type": "Product",
+    "name": product.name,
+    "image": product.image,
+    "description": product.short || product.long,
+    "brand": {
+      "@type": "Brand",
+      "name": "ShopTheTop247®"
+    },
+    "aggregateRating": product.rating
+      ? {
+          "@type": "AggregateRating",
+          "ratingValue": product.rating,
+          "reviewCount": 1
+        }
+      : undefined,
+    "offers": {
+      "@type": "Offer",
+      "url": product.affiliateUrl,
+      "priceCurrency": "USD",
+      "price": product.price?.replace(/[^0-9.]/g, ""),
+      "availability": "https://schema.org/InStock"
+    }
+  }
+
   return (
     <section className="max-w-5xl mx-auto p-6">
+
+      {/* Schema Markup */}
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(productSchema) }}
+      />
 
       {/* Card wrapper */}
       <div className="bg-white rounded-2xl shadow-sm p-6">
@@ -84,4 +119,3 @@ export default function ProductPage({ params }) {
     </section>
   )
 }
-
