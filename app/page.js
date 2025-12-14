@@ -1,3 +1,9 @@
+export const metadata = {
+  title: "ShopTheTop247® – Honest Reviews & Top Product Picks",
+  description:
+    "Discover trusted product reviews, wellness essentials, tech finds, and lifestyle upgrades. Shop smarter with ShopTheTop247®.",
+}
+
 import Image from 'next/image'
 import CategoryTiles from '../components/CategoryTiles'
 import { categories, products } from '../lib/products'
