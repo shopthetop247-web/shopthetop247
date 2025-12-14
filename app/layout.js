@@ -2,6 +2,10 @@ import './globals.css'
 import Header from '../components/Header'
 
 export const metadata = {
+  metadataBase: new URL("https://shopthetop247.com"),
+}
+
+export const metadata = {
   title: 'shopthetop247',
   description: 'Learn • Shop • Save — Curated picks in tech, home, beauty, health, pets & travel.'
 }
