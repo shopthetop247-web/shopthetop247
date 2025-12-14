@@ -1,8 +1,23 @@
 export const metadata = {
   title: "ShopTheTop247® – Honest Reviews & Top Product Picks",
-  description:
-    "Discover trusted product reviews, wellness essentials, tech finds, and lifestyle upgrades. Shop smarter with ShopTheTop247®.",
+  description: "Trusted reviews and curated product recommendations.",
+  openGraph: {
+    title: "ShopTheTop247®",
+    description: "Shop smarter with trusted reviews and top picks.",
+    url: "https://shopthetop247.com",
+    siteName: "ShopTheTop247",
+    images: [
+      {
+        url: "/logo.png",
+        width: 1200,
+        height: 630,
+        alt: "ShopTheTop247 Logo",
+      },
+    ],
+    type: "website",
+  },
 }
+
 
 import Image from 'next/image'
 import CategoryTiles from '../components/CategoryTiles'
