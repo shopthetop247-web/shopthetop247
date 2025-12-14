@@ -9,7 +9,7 @@ export default function ProductCard({ product }) {
       {/* Left-aligned smaller image */}
       <img
         src={product.image}
-        alt={product.name}
+        alt={product.imageAlt || product.name}
         className="w-28 h-24 object-cover rounded-xl flex-shrink-0"
       />
 
