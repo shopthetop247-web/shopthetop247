@@ -73,7 +73,7 @@ export default function ProductPage({ params }) {
         {/* Image */}
         <img
           src={product.image}
-          alt={product.name}
+          alt={product.imageAlt || product.name}
           className="w-full max-w-md h-80 object-cover rounded-xl mb-6"
         />
 
