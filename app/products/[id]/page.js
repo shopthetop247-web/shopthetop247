@@ -1,5 +1,27 @@
 import { getProductById } from '../../../lib/products'
 
+/* ===========================
+   SEO (Dynamic Per Product)
+   =========================== */
+export async function generateMetadata({ params }) {
+  const product = getProductById(params.id)
+
+  if (!product) {
+    return {
+      title: "Product Not Found | ShopTheTop247®",
+      description: "The requested product could not be found.",
+    }
+  }
+
+  return {
+    title: `${product.name} – Review, Price & Buying Guide | ShopTheTop247®`,
+    description: product.short || `Read our detailed review of ${product.name}.`,
+  }
+}
+
+/* ===========================
+   PAGE COMPONENT (UNCHANGED)
+   =========================== */
 export default function ProductPage({ params }) {
   const product = getProductById(params.id)
 
@@ -62,3 +84,4 @@ export default function ProductPage({ params }) {
     </section>
   )
 }
+
