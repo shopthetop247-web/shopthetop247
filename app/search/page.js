@@ -1,230 +1,150 @@
-import { getAllPosts } from "../../lib/posts"
-import { products } from "../../lib/products"
-import Link from "next/link"
+import { getAllProducts } from '../../lib/products'
+import { getAllPosts } from '../../lib/posts'
 
-/* ===========================
-   SEO METADATA
-   =========================== */
-export function generateMetadata({ searchParams }) {
-  const q = searchParams?.q || ""
-
-  return {
-    title: q
-      ? `Search results for "${q}" | ShopTheTop247®`
-      : "Search | ShopTheTop247®",
-    description: q
-      ? `Browse products and blog posts related to "${q}".`
-      : "Search products and blog posts on ShopTheTop247®.",
-  }
+export const metadata = {
+  title: 'Search Results | ShopTheTop247®',
+  description: 'Search products, guides, and blog posts on ShopTheTop247®',
 }
 
-/* ===========================
-   FUZZY MATCHING HELPERS
-   =========================== */
-function normalize(text = "") {
-  return text.toLowerCase().replace(/[^a-z0-9 ]/g, "")
+function normalize(text = '') {
+  return text
+    .toLowerCase()
+    .replace(/[^a-z0-9 ]/g, ' ')
+    .replace(/\s+/g, ' ')
+    .trim()
 }
 
-function fuzzyMatch(text, query) {
-  text = normalize(text)
-  query = normalize(query)
-
-  if (!query) return false
-  if (text.includes(query)) return true
-
-  const textWords = text.split(" ")
-  const queryWords = query.split(" ")
-
-  return queryWords.some(qw =>
-    textWords.some(tw => tw.startsWith(qw) || qw.startsWith(tw))
-  )
+function matchesAllWords(text, query) {
+  const t = normalize(text)
+  const words = normalize(query).split(' ')
+  return words.every(w => t.includes(w))
 }
 
-function highlight(text = "", query = "") {
-  if (!query) return text
-  const safeQuery = query.replace(/[.*+?^${}()|[\]\\]/g, "\\$&")
-  const regex = new RegExp(`(${safeQuery})`, "gi")
-  return text.replace(regex, `<mark class="bg-yellow-200">$1</mark>`)
+function exactPhrase(text, query) {
+  return normalize(text).includes(normalize(query))
 }
 
-/* ===========================
-   SEARCH PAGE
-   =========================== */
 export default function SearchPage({ searchParams }) {
-  const query = searchParams?.q?.trim() || ""
+  const query = searchParams.q || ''
 
-  const matchedProducts = products.filter(p =>
-    fuzzyMatch(
-      `${p.name} ${p.short || ""} ${p.long || ""}`,
-      query
-    )
-  )
+  if (!query) {
+    return <p className="p-6">Please enter a search term.</p>
+  }
 
-  const matchedPosts = getAllPosts().filter(post =>
-    fuzzyMatch(
-      `${post.title} ${post.excerpt} ${post.content}`,
-      query
-    )
-  )
+  const products = getAllProducts()
+  const posts = getAllPosts()
 
   /* ===========================
-     SEARCH RESULT SCHEMA
+     PRODUCT SEARCH
      =========================== */
-  const schema = {
+  const matchedProducts = products
+    .map(product => {
+      const text = `${product.name} ${product.short || ''} ${product.long || ''}`
+      let score = 0
+
+      if (exactPhrase(text, query)) score += 5
+      if (matchesAllWords(text, query)) score += 3
+
+      return score > 0 ? { ...product, _score: score } : null
+    })
+    .filter(Boolean)
+    .sort((a, b) => b._score - a._score)
+
+  /* ===========================
+     BLOG SEARCH (STRICTER)
+     =========================== */
+  const matchedPosts = posts
+    .map(post => {
+      const text = `${post.title} ${post.excerpt || ''}`
+      let score = 0
+
+      if (exactPhrase(text, query)) score += 4
+      if (matchesAllWords(text, query)) score += 2
+
+      return score > 0 ? { ...post, _score: score } : null
+    })
+    .filter(Boolean)
+    .sort((a, b) => b._score - a._score)
+
+  /* ===========================
+     SEARCH SCHEMA
+     =========================== */
+  const searchSchema = {
     "@context": "https://schema.org",
     "@type": "SearchResultsPage",
-    name: `Search results for "${query}"`,
-    mainEntity: [
-      ...(matchedProducts.length
-        ? [{
-            "@type": "ItemList",
-            name: "Product Results",
-            itemListElement: matchedProducts.map((p, i) => ({
-              "@type": "ListItem",
-              position: i + 1,
-              url: `https://shopthetop247.com/products/${p.id}`,
-              item: {
-                "@type": "Product",
-                name: p.name,
-                image: `https://shopthetop247.com${p.image}`,
-                description: p.short || p.long,
-                brand: {
-                  "@type": "Brand",
-                  name: "ShopTheTop247®",
-                },
-                offers: {
-                  "@type": "Offer",
-                  priceCurrency: "USD",
-                  price: p.price?.replace(/[^0-9.]/g, ""),
-                  availability: "https://schema.org/InStock",
-                },
-              },
-            })),
-          }]
-        : []),
-
-      ...(matchedPosts.length
-        ? [{
-            "@type": "ItemList",
-            name: "Blog Results",
-            itemListElement: matchedPosts.map((post, i) => ({
-              "@type": "ListItem",
-              position: i + 1,
-              url: `https://shopthetop247.com/blog/${post.slug}`,
-              item: {
-                "@type": "BlogPosting",
-                headline: post.title,
-                image: `https://shopthetop247.com${post.image}`,
-                datePublished: post.date,
-                description: post.excerpt,
-                author: {
-                  "@type": "Organization",
-                  name: "ShopTheTop247®",
-                },
-              },
-            })),
-          }]
-        : []),
-    ],
+    "name": `Search results for "${query}"`,
+    "mainEntity": [
+      ...matchedProducts.map(p => ({
+        "@type": "Product",
+        "name": p.name,
+        "image": p.image,
+        "offers": {
+          "@type": "Offer",
+          "price": p.price,
+          "availability": "https://schema.org/InStock"
+        }
+      })),
+      ...matchedPosts.map(p => ({
+        "@type": "BlogPosting",
+        "headline": p.title,
+        "datePublished": p.date,
+        "url": `https://shopthetop247.com/blog/${p.slug}`
+      }))
+    ]
   }
 
   return (
-    <section className="max-w-6xl mx-auto p-6">
-      {/* JSON-LD Schema */}
+    <section className="p-6 max-w-6xl mx-auto">
       <script
         type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }}
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(searchSchema) }}
       />
 
-      <h1 className="text-3xl font-bold mb-2">Search Results</h1>
-
-      {query && (
-        <p className="text-gray-600 mb-8">
-          Showing results for <strong>“{query}”</strong>
-        </p>
-      )}
+      <h1 className="text-3xl font-bold mb-6">
+        Search results for “{query}”
+      </h1>
 
       {/* PRODUCTS */}
       {matchedProducts.length > 0 && (
         <>
           <h2 className="text-2xl font-semibold mb-4">Products</h2>
-
-          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 mb-12">
+          <div className="grid gap-6 mb-10">
             {matchedProducts.map(product => (
-              <article
+              <a
                 key={product.id}
-                className="bg-white p-4 rounded-2xl shadow-sm"
+                href={`/products/${product.id}`}
+                className="block bg-white p-5 rounded-2xl shadow-sm hover:shadow-md transition"
               >
-                <img
-                  src={product.image}
-                  alt={product.imageAlt || product.name}
-                  className="w-full h-40 object-cover rounded-xl mb-3"
-                />
-
-                <h3
-                  className="font-semibold"
-                  dangerouslySetInnerHTML={{
-                    __html: highlight(product.name, query),
-                  }}
-                />
-
-                <p
-                  className="text-sm text-gray-600 mt-1"
-                  dangerouslySetInnerHTML={{
-                    __html: highlight(product.short || "", query),
-                  }}
-                />
-
-                <Link
-                  href={`/products/${product.id}`}
-                  className="inline-block mt-3 text-indigo-600 text-sm font-medium underline"
-                >
-                  View product →
-                </Link>
-              </article>
+                <h3 className="text-xl font-semibold">{product.name}</h3>
+                <p className="text-gray-600">{product.short}</p>
+              </a>
             ))}
           </div>
         </>
       )}
 
-      {/* BLOG POSTS */}
+      {/* BLOGS */}
       {matchedPosts.length > 0 && (
         <>
           <h2 className="text-2xl font-semibold mb-4">Blog Posts</h2>
-
-          <div className="space-y-5">
+          <div className="grid gap-6">
             {matchedPosts.map(post => (
-              <Link
+              <a
                 key={post.slug}
                 href={`/blog/${post.slug}`}
                 className="block bg-white p-5 rounded-2xl shadow-sm hover:shadow-md transition"
               >
-                <h3
-                  className="text-xl font-semibold"
-                  dangerouslySetInnerHTML={{
-                    __html: highlight(post.title, query),
-                  }}
-                />
-
-                <p className="text-gray-500 text-sm mt-1">{post.date}</p>
-
-                <p
-                  className="text-gray-700 mt-2"
-                  dangerouslySetInnerHTML={{
-                    __html: highlight(post.excerpt, query),
-                  }}
-                />
-              </Link>
+                <h3 className="text-xl font-semibold">{post.title}</h3>
+                <p className="text-gray-500 text-sm">{post.date}</p>
+                <p className="text-gray-700">{post.excerpt}</p>
+              </a>
             ))}
           </div>
         </>
       )}
 
-      {/* NO RESULTS */}
-      {query && matchedProducts.length === 0 && matchedPosts.length === 0 && (
-        <p className="text-gray-500 mt-8">
-          No results found. Try another search.
-        </p>
+      {matchedProducts.length === 0 && matchedPosts.length === 0 && (
+        <p className="text-gray-500 mt-6">No results found.</p>
       )}
     </section>
   )
