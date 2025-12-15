@@ -1,7 +1,10 @@
 import { getAllPosts } from '../../lib/posts'
 
-export default function BlogPage() {
-  const allPosts = getAllPosts()
+export function getAllPosts() {
+  return posts
+    .slice()
+    .sort((a, b) => new Date(b.date) - new Date(a.date))
+}
 
   return (
     <section className="p-6">
