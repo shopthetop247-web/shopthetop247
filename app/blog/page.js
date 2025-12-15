@@ -1,10 +1,8 @@
 import { getAllPosts } from '../../lib/posts'
 
-export function getAllPosts() {
-  return posts
-    .slice()
-    .sort((a, b) => new Date(b.date) - new Date(a.date))
-}
+export default function BlogPage() {
+  const posts = getAllPosts()
+    .sort((a, b) => new Date(b.date) - new Date(a.date)) // NEWEST FIRST
 
   return (
     <section className="p-6">
