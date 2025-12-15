@@ -1,41 +1,58 @@
-import Link from 'next/link'
-import Image from 'next/image'
+"use client"
+
+import { useState } from "react"
+import { useRouter } from "next/navigation"
+import Link from "next/link"
+import Image from "next/image"
 
 export default function Header() {
+  const [query, setQuery] = useState("")
+  const router = useRouter()
+
+  function handleSubmit(e) {
+    e.preventDefault()
+
+    if (!query.trim()) return
+
+    router.push(`/search?q=${encodeURIComponent(query)}`)
+    setQuery("")
+  }
+
   return (
     <header className="bg-white shadow-sm sticky top-0 z-50">
       <div className="max-w-6xl mx-auto flex items-center justify-between p-4">
 
-        {/* BIGGER LOGO */}
+        {/* LOGO */}
         <Link href="/" className="flex items-center gap-2">
-          <Image 
+          <Image
             src="/logo.png"
             alt="ShopTheTop247 Logo"
-            width={190}   // increased from around 45–50
+            width={190}
             height={60}
             className="object-contain"
           />
-          
         </Link>
 
-        {/* SMALLER SEARCH BAR */}
-        <div className="flex-1 mx-6">
+        {/* SEARCH */}
+        <form onSubmit={handleSubmit} className="flex-1 mx-6">
           <input
-            type="text"
+            type="search"
+            value={query}
+            onChange={(e) => setQuery(e.target.value)}
             placeholder="Search products, tips, blogs..."
             className="w-full max-w-md px-3 py-2 border border-gray-300 rounded-lg text-sm focus:ring-2 focus:ring-indigo-400 focus:outline-none"
           />
-        </div>
+        </form>
 
-        {/* RIGHT LINKS */}
+        {/* NAV */}
         <nav className="flex items-center gap-4 text-sm font-medium">
           <Link href="/" className="hover:text-indigo-600">Home</Link>
           <Link href="/blog" className="hover:text-indigo-600">Blog</Link>
           <Link href="/about" className="hover:text-indigo-600">About</Link>
           <Link href="/contact" className="hover:text-indigo-600">Contact</Link>
         </nav>
+
       </div>
     </header>
   )
 }
-
