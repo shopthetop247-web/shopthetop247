@@ -1,28 +1,25 @@
-"use client"
+'use client'
 
-import { useState } from "react"
-import { useRouter } from "next/navigation"
-import Link from "next/link"
-import Image from "next/image"
+import { useState } from 'react'
+import { useRouter } from 'next/navigation'
+import Link from 'next/link'
+import Image from 'next/image'
 
 export default function Header() {
-  const [query, setQuery] = useState("")
+  const [query, setQuery] = useState('')
   const router = useRouter()
 
   function handleSubmit(e) {
     e.preventDefault()
-
     if (!query.trim()) return
-
-    router.push(`/search?q=${encodeURIComponent(query)}`)
-    setQuery("")
+    router.push(`/search?q=${encodeURIComponent(query.trim())}`)
+    setQuery('')
   }
 
   return (
     <header className="bg-white shadow-sm sticky top-0 z-50">
       <div className="max-w-6xl mx-auto flex items-center justify-between p-4">
 
-        {/* LOGO */}
         <Link href="/" className="flex items-center gap-2">
           <Image
             src="/logo.png"
@@ -33,25 +30,22 @@ export default function Header() {
           />
         </Link>
 
-        {/* SEARCH */}
         <form onSubmit={handleSubmit} className="flex-1 mx-6">
           <input
-            type="search"
+            type="text"
             value={query}
-            onChange={(e) => setQuery(e.target.value)}
+            onChange={e => setQuery(e.target.value)}
             placeholder="Search products, tips, blogs..."
             className="w-full max-w-md px-3 py-2 border border-gray-300 rounded-lg text-sm focus:ring-2 focus:ring-indigo-400 focus:outline-none"
           />
         </form>
 
-        {/* NAV */}
         <nav className="flex items-center gap-4 text-sm font-medium">
-          <Link href="/" className="hover:text-indigo-600">Home</Link>
-          <Link href="/blog" className="hover:text-indigo-600">Blog</Link>
-          <Link href="/about" className="hover:text-indigo-600">About</Link>
-          <Link href="/contact" className="hover:text-indigo-600">Contact</Link>
+          <Link href="/">Home</Link>
+          <Link href="/blog">Blog</Link>
+          <Link href="/about">About</Link>
+          <Link href="/contact">Contact</Link>
         </nav>
-
       </div>
     </header>
   )
