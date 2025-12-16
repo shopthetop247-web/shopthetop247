@@ -15,8 +15,8 @@ export default function Footer() {
             <Image
             src="/logo.jpg"
             alt="ShopTheTop247 Logo"
-            width={190}
-            height={60}
+            width={240}
+            height={160}
             className="object-contain"
           />
             <p className="mt-2 text-sm text-gray-600">
