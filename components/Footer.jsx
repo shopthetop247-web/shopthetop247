@@ -11,9 +11,7 @@ export default function Footer() {
 
           {/* Brand */}
           <div>
-            <h3 className="text-lg font-bold text-gray-800">
-              ShopTheTop247®
-            </h3>
+           
             <Image
             src="/logo.jpg"
             alt="ShopTheTop247 Logo"
