@@ -13,6 +13,13 @@ export default function Footer() {
             <h3 className="text-lg font-bold text-gray-800">
               ShopTheTop247®
             </h3>
+            <Image
+            src="/logo.jpg"
+            alt="ShopTheTop247 Logo"
+            width={190}
+            height={60}
+            className="object-contain"
+          />
             <p className="mt-2 text-sm text-gray-600">
               Curated products, honest reviews, and smart lifestyle tips —
               helping you shop better every day.
