@@ -22,7 +22,7 @@ export default function Header() {
 
         <Link href="/" className="flex items-center gap-2">
           <Image
-            src="/logo.png"
+            src="/logo.jpg"
             alt="ShopTheTop247 Logo"
             width={190}
             height={60}
