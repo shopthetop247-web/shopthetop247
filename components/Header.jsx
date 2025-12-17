@@ -97,7 +97,7 @@ export default function Header() {
 
           {/* Pinterest */}
           <a
-          href="https://pinterest.com/yourhandle"
+          href="https://www.pinterest.com/shopthetop247/"
           target="_blank"
           rel="noopener noreferrer"
           aria-label="ShopTheTop247 on Pinterest"
