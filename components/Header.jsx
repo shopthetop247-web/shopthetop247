@@ -24,8 +24,8 @@ export default function Header() {
           <Image
             src="/logo.jpg"
             alt="ShopTheTop247 Logo"
-            width={190}
-            height={60}
+            width={280}
+            height={180}
             className="object-contain"
           />
         </Link>
