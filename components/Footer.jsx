@@ -41,7 +41,7 @@ export default function Footer() {
 
     {/* Instagram */}
     <a
-      href="https://instagram.com/yourhandle"
+      href="https://www.instagram.com/shopthetop247"
       target="_blank"
       rel="noopener noreferrer"
       aria-label="ShopTheTop247 on Instagram"
