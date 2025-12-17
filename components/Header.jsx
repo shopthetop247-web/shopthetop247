@@ -53,7 +53,7 @@ export default function Header() {
               <Link href="/contact" className="hover:text-indigo-600">Contact</Link>
             </div>
 
-            
+          <br></br>  
           {/* Social Icons */}
           <div className="flex items-center gap-4">
           {/* X / Twitter */}
