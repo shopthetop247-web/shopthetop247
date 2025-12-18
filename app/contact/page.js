@@ -9,7 +9,7 @@ export default function ContactPage() {
       </p>
 
       <form
-  action="https://formspree.io/f/abcdwxyz"
+  action="https://formspree.io/f/xpqazpay"
   method="POST"
   className="space-y-4"
 >
