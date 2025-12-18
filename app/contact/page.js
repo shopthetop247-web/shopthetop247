@@ -8,7 +8,10 @@ export default function ContactPage() {
         We’d love to hear from you. Send us a message below.
       </p>
 
-      <form className="space-y-4 bg-white p-6 rounded-2xl shadow-sm border border-gray-100">
+      <form 
+           action="https://formspree.io/f/xojaqjgl"
+           method="POST"
+           className="space-y-4 bg-white p-6 rounded-2xl shadow-sm border border-gray-100">
         <div>
           <label className="block text-sm font-medium text-gray-700 mb-1">Name</label>
           <input 
