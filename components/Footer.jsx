@@ -26,19 +26,6 @@ export default function Footer() {
 
             {/* Social Icons */}
   <div className="flex items-center gap-4">
-    {/* X / Twitter */}
-    <a
-      href="https://twitter.com/yourhandle"
-      target="_blank"
-      rel="noopener noreferrer"
-      aria-label="ShopTheTop247 on X"
-      className="text-gray-500 hover:text-black transition"
-    >
-      <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
-        <path d="M22.46 6c-.77.35-1.6.58-2.46.69a4.3 4.3 0 001.88-2.38 8.6 8.6 0 01-2.72 1.04 4.28 4.28 0 00-7.3 3.9A12.15 12.15 0 013 4.79a4.28 4.28 0 001.32 5.72 4.23 4.23 0 01-1.94-.54v.05a4.28 4.28 0 003.44 4.2 4.3 4.3 0 01-1.93.07 4.28 4.28 0 004 2.97A8.6 8.6 0 012 19.54a12.14 12.14 0 006.56 1.92c7.88 0 12.2-6.53 12.2-12.2 0-.18 0-.35-.01-.53A8.7 8.7 0 0022.46 6z"/>
-      </svg>
-    </a>
-
     {/* Instagram */}
     <a
       href="https://www.instagram.com/shopthetop247"
