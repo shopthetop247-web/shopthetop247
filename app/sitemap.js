@@ -1,5 +1,5 @@
-import { getAllPosts } from '@/lib/posts'
-import { getAllProducts } from '@/lib/products'
+import { getAllPosts } from '../lib/posts'
+import { getAllProducts } from '../lib/products'
 
 export default function sitemap() {
   const baseUrl = 'https://shopthetop247.com'
@@ -18,7 +18,7 @@ export default function sitemap() {
   // Blog posts
   const posts = getAllPosts().map(post => ({
     url: `${baseUrl}/blog/${post.slug}`,
-    lastModified: post.date || new Date(),
+    lastModified: post.date ? new Date(post.date) : new Date(),
   }))
 
   // Product pages
