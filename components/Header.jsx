@@ -24,13 +24,14 @@ export default function Header() {
         <div className="flex items-center justify-between">
           {/* Logo */}
           <Link href="/" className="flex items-center">
-            <Image
-              src="/logo.jpg"
-              alt="ShopTheTop247 Logo"
-              width={280}
-              height={180}
-              className="object-contain"
-            />
+           <Image
+            src="/logo.jpg"
+            alt="ShopTheTop247 Logo"
+            width={360}
+            height={220}
+            className="object-contain w-40 sm:w-48 md:w-64"
+          />
+
           </Link>
 
           {/* Search */}
