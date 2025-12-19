@@ -8,7 +8,7 @@ export const metadata = {
     siteName: "ShopTheTop247",
     images: [
       {
-        url: "/logo.png",
+        url: "/logo.jpg",
         width: 1200,
         height: 630,
         alt: "ShopTheTop247 Logo",
