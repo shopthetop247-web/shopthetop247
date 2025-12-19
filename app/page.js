@@ -111,7 +111,7 @@ export default function Home() {
       <section className="mt-12">
         <div className="flex items-center gap-2 mb-4">
           <span className="inline-block h-6 w-1 bg-purple-400 rounded-full"></span>
-          <h2 className="text-2xl font-bold">Browse Categories</h2>
+          <h2 className="text-2xl font-bold">Browse Product Categories</h2>
         </div>
 
         <CategoryTiles categories={categories} />
