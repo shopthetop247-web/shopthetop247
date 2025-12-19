@@ -34,7 +34,11 @@ export default function Header() {
           </Link>
 
           {/* Search */}
-          <form onSubmit={handleSubmit} className="flex-1 mx-6">
+          <form
+           onSubmit={handleSubmit}
+           className="hidden md:flex flex-1 mx-6"
+          >
+
             <input
               type="text"
               value={query}
