@@ -8,9 +8,9 @@ module.exports = {
     extend: {
       colors: {
         brand: {
-          primary: "#1F2937",   // Main brand orange
+          primary: "#1F2937",   // Main brand Text Dark Slate
           secondary: "#1F2937", // Dark slate (headers, footer)
-          accent: "#2563EB",    // Blue (links, highlights)
+          accent: "#F2D8A7",    // Muted Yellow (links, highlights)
           muted: "#6B7280",     // Muted text
           background: "#F2D8A7" // Light background
         },
