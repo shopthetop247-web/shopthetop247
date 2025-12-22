@@ -52,7 +52,7 @@ export default function Header() {
           {/* Nav */}
           <nav className="flex flex-col items-end text-sm font-medium">
             <div className="flex gap-4">
-              <Link href="/" className="hover:text-indigo-600">Home</Link>
+              <Link href="/" className="hover:text-brand-secondary">Home</Link>
               <Link href="/blog" className="hover:text-indigo-600">Blog</Link>
               <Link href="/about" className="hover:text-indigo-600">About</Link>
               <Link href="/contact" className="hover:text-indigo-600">Contact</Link>
