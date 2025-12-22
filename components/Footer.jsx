@@ -74,32 +74,32 @@ export default function Footer() {
             </h4>
             <ul className="space-y-2 text-sm">
               <li>
-                <Link href="/" className="text-gray-600 hover:text-indigo-600">
+                <Link href="/" className="text-gray-600 hover:text-brand-accent">
                   Home
                 </Link>
               </li>
               <li>
-                <Link href="/blog" className="text-gray-600 hover:text-indigo-600">
+                <Link href="/blog" className="text-gray-600 hover:text-brand-accent">
                   Blog
                 </Link>
               </li>
               <li>
-                <Link href="/about" className="text-gray-600 hover:text-indigo-600">
+                <Link href="/about" className="text-gray-600 hover:text-brand-accent">
                   About
                 </Link>
               </li>
               <li>
-                <Link href="/contact" className="text-gray-600 hover:text-indigo-600">
+                <Link href="/contact" className="text-gray-600 hover:text-brand-accent">
                   Contact
                 </Link>
               </li>
               <li>
-                <Link href="/terms" className="text-gray-600 hover:text-indigo-600">
+                <Link href="/terms" className="text-gray-600 hover:text-brand-accent">
                   Terms & Conditions
               </Link>
               </li>
               <li>
-                <Link href="/privacy" className="text-gray-600 hover:text-indigo-600">
+                <Link href="/privacy" className="text-gray-600 hover:text-brand-accent">
                   Privacy Policy
               </Link>
               </li>
