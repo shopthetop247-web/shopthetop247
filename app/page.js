@@ -53,7 +53,7 @@ export default function Home() {
         {latestPost && (
           <>
             <div className="flex items-center gap-2 mt-10 mb-3">
-              <span className="inline-block h-6 w-1 rounded-full bg-brand-background"></span>
+              <span className="inline-block h-6 w-1 rounded-full bg-brand-accent"></span>
               <h3 className="text-xl font-semibold text-gray-800">
                 Featured Blog
               </h3>
@@ -84,7 +84,7 @@ export default function Home() {
             <div className="mt-4">
               <a
                 href="/blog"
-                className="inline-block px-5 py-2 bg-brand-background text-black rounded-xl font-medium hover:bg-brand-background-600 transition"
+                className="inline-block px-5 py-2 bg-brand-accent text-black rounded-xl font-medium hover:bg-brand-background-600 transition"
               >
                 View All Blog Posts
               </a>
