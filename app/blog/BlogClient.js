@@ -11,6 +11,14 @@ export default function BlogClient({ posts, categories }) {
       ? posts
       : posts.filter(post => post.category === activeCategory)
 
+  const categoryCounts = posts.reduce((acc, post) => {
+  if (!post.category) return acc
+
+  acc[post.category] = (acc[post.category] || 0) + 1
+  return acc
+}, {})
+
+
   return (
     <section className="p-6 max-w-6xl mx-auto">
       <h1 className="text-4xl font-bold mb-6">Blog</h1>
@@ -41,6 +49,10 @@ export default function BlogClient({ posts, categories }) {
               }`}
           >
             {category}
+            <span className="ml-1 text-xs text-gray-400">
+            ({categoryCounts[category] || 0})
+            </span>
+
           </button>
         ))}
       </div>
