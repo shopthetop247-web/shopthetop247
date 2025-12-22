@@ -12,7 +12,7 @@ module.exports = {
           secondary: "#1F2937", // Dark slate (headers, footer)
           accent: "#2563EB",    // Blue (links, highlights)
           muted: "#6B7280",     // Muted text
-          background: "#F9FAFB" // Light background
+          background: "#F2D8A7" // Light background
         },
       },
     },
