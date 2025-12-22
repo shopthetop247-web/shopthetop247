@@ -84,7 +84,7 @@ export default function Home() {
             <div className="mt-4">
               <a
                 href="/blog"
-                className="inline-block px-5 py-2 bg-brand-background text-white rounded-xl font-medium hover:bg-brand-background-600 transition"
+                className="inline-block px-5 py-2 bg-brand-background text-black rounded-xl font-medium hover:bg-brand-background-600 transition"
               >
                 View All Blog Posts
               </a>
