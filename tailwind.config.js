@@ -13,6 +13,7 @@ module.exports = {
           accent: "#65A653",    // Darker Green (links, highlights)
           muted: "#d9d0bf",     // Muted text
           background: "#F2D8A7" // Light Yellow
+          backgroundtwo: "#d9d0bf" // Light Tan
         },
       },
     },
