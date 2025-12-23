@@ -62,7 +62,7 @@ export default function Home() {
             {/* FEATURED BLOG CARD */}
             <a 
               href={`/blog/${latestPost.slug}`}
-              className="block bg-gradient-to-r from-indigo-50 to-teal-50 p-5 rounded-2xl shadow-sm hover:shadow-md transition"
+              className="block bg-#d9d0bf p-5 rounded-2xl shadow-sm hover:shadow-md transition"
             >
               <div className="flex gap-4 items-start">
 
