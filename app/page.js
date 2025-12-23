@@ -43,7 +43,7 @@ export default function Home() {
           We share handpicked products and smart lifestyle solutions for people who love living well. From wellness 
           must-haves to everyday upgrades, it’s all about helping you enjoy a healthier, happier, and more intentional life. 
           Read our{" "}
-          <a href="/blog" className="font-bold text-blue-600 hover:underline">
+          <a href="/blog" className="font-bold text-[#65A653] hover:underline">
             blog
           </a>{" "}
           to find reviews, compare, and shop with confidence.
