@@ -60,11 +60,12 @@ export default function Home() {
             </div>
 
             {/* FEATURED BLOG CARD */}
-            <a 
-              href={`/blog/${latestPost.slug}`}
-              className="block background-color: #f5ae2a p-5 rounded-2xl shadow-sm hover:shadow-md transition"
-            >
-              <div className="flex gap-4 items-start">
+            <a
+             href={`/blog/${latestPost.slug}`}
+             className="block bg-[#f5ae2a] p-5 rounded-2xl shadow-sm hover:shadow-md transition"
+             >
+             <div className="flex gap-4 items-start">
+
 
                 <img 
                   src={latestPost.image}
