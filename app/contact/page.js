@@ -39,7 +39,7 @@ export default function ContactPage() {
 
   <button
     type="submit"
-    className="bg-indigo-600 text-white px-6 py-2 rounded-lg"
+    className="bg-[#65A653] text-white px-6 py-2 rounded-lg"
   >
     Send Message
   </button>
