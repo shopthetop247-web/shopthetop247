@@ -1,7 +1,7 @@
 export default function ContactPage() {
   return (
     <section className="max-w-xl mx-auto p-6">
-      <h1 className="text-4xl font-bold text-blue-800 mb-4">Contact Us</h1>
+      <h1 className="text-4xl font-bold text-[#65A653] mb-4">Contact Us</h1>
 
       <p className="text-gray-700 mb-6">
         Have a question, suggestion, or collaboration idea?
