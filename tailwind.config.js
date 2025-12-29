@@ -20,7 +20,7 @@ module.exports = {
         DEFAULT: {
           css: {
             a: {
-              color: '#4293f5',
+              color: '#059c0f',
               fontWeight: '600',
               textDecoration: 'none',
               transition: 'all 0.2s ease-in-out',
