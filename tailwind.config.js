@@ -10,7 +10,7 @@ module.exports = {
       colors: {
         brand: {
           primary: '#1F2937',
-          secondary: '#1E3A8A', // dark blue fallback
+          secondary: '#1F2937', // dark slate fallback
           accent: '#65A653',
           muted: '#D9D0BF', // muted text
           background: '#F2D8A7' //light yellow  
