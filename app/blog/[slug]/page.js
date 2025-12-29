@@ -124,12 +124,11 @@ export default function BlogPostPage({ params }) {
       </p>
 
       {/* Content */}
-      <div
-        className="text-gray-800 leading-relaxed"
-        dangerouslySetInnerHTML={{
-          __html: formatParagraphs(post.content),
-        }}
-      />
+     <article
+  className="prose prose-lg max-w-none"
+  dangerouslySetInnerHTML={{ __html: formatParagraphs(post.content) }}
+/>
+
     </section>
   )
 }
