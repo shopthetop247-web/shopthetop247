@@ -18,7 +18,6 @@ export const metadata = {
   },
 }
 
-
 import Image from 'next/image'
 import CategoryTiles from '../components/CategoryTiles'
 import { categories, products } from '../lib/products'
@@ -27,29 +26,46 @@ import ProductCard from '../components/ProductCard'
 
 export default function Home() {
   const latestPost = getLatestPost()
-  const featured = products.slice(0, 3)
+
+  // 🔹 Balanced Featured Products (1 per category, newest first)
+  const featured = Object.values(
+    products.reduce((acc, product) => {
+      const category = product.category
+
+      if (
+        !acc[category] ||
+        new Date(product.date) > new Date(acc[category].date)
+      ) {
+        acc[category] = product
+      }
+
+      return acc
+    }, {})
+  )
+    .sort((a, b) => new Date(b.date) - new Date(a.date))
+    .slice(0, 3)
 
   return (
     <section>
 
       {/* HEADER CONTENT BLOCK */}
       <div className="bg-white p-6 rounded-2xl shadow-sm">
-            
+
         <h2 className="text-2xl font-extrabold mt-2">
           Bringing you reviews and links to the best stuff being talked about.
         </h2>
 
         <p className="mt-2 text-gray-600">
-          We share handpicked products and smart lifestyle solutions for people who love living well. From wellness 
-          must-haves to everyday upgrades, it’s all about helping you enjoy a healthier, happier, and more intentional life. 
-          Read our{" "}
+          We share handpicked products and smart lifestyle solutions for people who love living well.
+          From wellness must-haves to everyday upgrades, it’s all about helping you enjoy a healthier,
+          happier, and more intentional life. Read our{" "}
           <a href="/blog" className="font-bold text-[#65A653] hover:underline">
             blog
           </a>{" "}
           to find reviews, compare, and shop with confidence.
         </p>
 
-        {/* FEATURED BLOG LABEL */}
+        {/* FEATURED BLOG */}
         {latestPost && (
           <>
             <div className="flex items-center gap-2 mt-10 mb-3">
@@ -59,15 +75,13 @@ export default function Home() {
               </h3>
             </div>
 
-            {/* FEATURED BLOG CARD */}
             <a
-             href={`/blog/${latestPost.slug}`}
-             className="block bg-[#f0e1c7] p-5 rounded-2xl shadow-sm hover:shadow-md transition"
-             >
-             <div className="flex gap-4 items-start">
+              href={`/blog/${latestPost.slug}`}
+              className="block bg-[#f0e1c7] p-5 rounded-2xl shadow-sm hover:shadow-md transition"
+            >
+              <div className="flex gap-4 items-start">
 
-
-                <img 
+                <img
                   src={latestPost.image}
                   alt={latestPost.title}
                   className="w-40 h-32 object-cover rounded-xl flex-shrink-0"
@@ -76,7 +90,9 @@ export default function Home() {
                 <div>
                   <h2 className="text-2xl font-semibold">{latestPost.title}</h2>
                   <p className="text-gray-500 text-sm mt-1">{latestPost.date}</p>
-                  <p className="text-gray-700 mt-2 line-clamp-3">{latestPost.excerpt}</p>
+                  <p className="text-gray-700 mt-2 line-clamp-3">
+                    {latestPost.excerpt}
+                  </p>
                 </div>
 
               </div>
@@ -98,7 +114,9 @@ export default function Home() {
       <section className="mt-10">
         <div className="flex items-center gap-2 mb-3">
           <span className="inline-block h-6 w-1 bg-teal-500 rounded-full"></span>
-          <h2 className="text-2xl font-bold">Featured Products From Our Blog Posts</h2>
+          <h2 className="text-2xl font-bold">
+            Featured Products From Our Blog Posts
+          </h2>
         </div>
 
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
@@ -112,7 +130,9 @@ export default function Home() {
       <section className="mt-12">
         <div className="flex items-center gap-2 mb-4">
           <span className="inline-block h-6 w-1 bg-purple-400 rounded-full"></span>
-          <h2 className="text-2xl font-bold">Browse Product Categories</h2>
+          <h2 className="text-2xl font-bold">
+            Browse Product Categories
+          </h2>
         </div>
 
         <CategoryTiles categories={categories} />
