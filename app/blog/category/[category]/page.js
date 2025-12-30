@@ -2,9 +2,6 @@ import { getAllPosts, getAllCategories } from '../../../../lib/posts'
 import Link from 'next/link'
 import { notFound } from 'next/navigation'
 
-/**
- * Generate static category pages
- */
 export function generateStaticParams() {
   const categories = getAllCategories()
 
@@ -13,9 +10,6 @@ export function generateStaticParams() {
   }))
 }
 
-/**
- * SEO metadata per category
- */
 export function generateMetadata({ params }) {
   const rawCategory = params.category.replace('-', ' ')
   const categoryName =
@@ -46,9 +40,58 @@ export default function CategoryPage({ params }) {
   }
 
   const formattedCategory = category.replace('-', ' ')
+  const categoryUrl = `https://shopthetop247.com/blog/category/${category}`
+
+  /* ---------- SCHEMA ---------- */
+  const breadcrumbSchema = {
+    '@context': 'https://schema.org',
+    '@type': 'BreadcrumbList',
+    itemListElement: [
+      {
+        '@type': 'ListItem',
+        position: 1,
+        name: 'Home',
+        item: 'https://shopthetop247.com/',
+      },
+      {
+        '@type': 'ListItem',
+        position: 2,
+        name: 'Blog',
+        item: 'https://shopthetop247.com/blog',
+      },
+      {
+        '@type': 'ListItem',
+        position: 3,
+        name: formattedCategory,
+        item: categoryUrl,
+      },
+    ],
+  }
+
+  const collectionSchema = {
+    '@context': 'https://schema.org',
+    '@type': 'CollectionPage',
+    name: `${formattedCategory} Articles`,
+    description: `Browse ${formattedCategory} product reviews, buying guides, and expert recommendations.`,
+    url: categoryUrl,
+    mainEntity: filteredPosts.map(post => ({
+      '@type': 'BlogPosting',
+      headline: post.title,
+      datePublished: post.date,
+      url: `https://shopthetop247.com/blog/${post.slug}`,
+    })),
+  }
 
   return (
     <section className="p-6 max-w-6xl mx-auto">
+
+      {/* JSON-LD Schema */}
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify([breadcrumbSchema, collectionSchema]),
+        }}
+      />
 
       {/* Category Header */}
       <header className="mb-10">
@@ -56,7 +99,6 @@ export default function CategoryPage({ params }) {
           {formattedCategory}
         </h1>
 
-        {/* SEO intro text */}
         <p className="mt-4 max-w-3xl text-gray-600">
           Explore our latest <strong>{formattedCategory}</strong> articles,
           including honest product reviews, buying guides, and practical tips
@@ -64,7 +106,7 @@ export default function CategoryPage({ params }) {
         </p>
       </header>
 
-      {/* Posts Grid */}
+      {/* Posts */}
       <div className="grid gap-8">
         {filteredPosts.map(post => (
           <Link
@@ -84,11 +126,9 @@ export default function CategoryPage({ params }) {
               <h2 className="text-2xl font-semibold">
                 {post.title}
               </h2>
-
               <p className="text-gray-500 text-sm mt-1">
                 {post.date}
               </p>
-
               <p className="text-gray-700 mt-2">
                 {post.excerpt}
               </p>
@@ -97,7 +137,6 @@ export default function CategoryPage({ params }) {
         ))}
       </div>
 
-      {/* Back Link */}
       <div className="mt-12">
         <Link
           href="/blog"
