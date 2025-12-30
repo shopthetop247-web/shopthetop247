@@ -2,6 +2,9 @@ import { getAllPosts, getAllCategories } from '../../../../lib/posts'
 import Link from 'next/link'
 import { notFound } from 'next/navigation'
 
+/**
+ * Generate static category pages
+ */
 export function generateStaticParams() {
   const categories = getAllCategories()
 
@@ -10,17 +13,20 @@ export function generateStaticParams() {
   }))
 }
 
+/**
+ * SEO metadata per category
+ */
 export function generateMetadata({ params }) {
+  const rawCategory = params.category.replace('-', ' ')
   const categoryName =
-    params.category.charAt(0).toUpperCase() +
-    params.category.slice(1)
+    rawCategory.charAt(0).toUpperCase() + rawCategory.slice(1)
 
   return {
     title: `${categoryName} Blog Posts | ShopTheTop247®`,
     description: `Browse ${categoryName.toLowerCase()} articles, product reviews, and buying guides from ShopTheTop247®.`,
     openGraph: {
       title: `${categoryName} Articles`,
-      description: `Expert ${categoryName.toLowerCase()} content from ShopTheTop247®.`,
+      description: `Expert ${categoryName.toLowerCase()} content from ShopTheTop247® including reviews, tips, and recommendations.`,
       url: `https://shopthetop247.com/blog/category/${params.category}`,
       type: 'website',
     },
@@ -39,12 +45,26 @@ export default function CategoryPage({ params }) {
     notFound()
   }
 
+  const formattedCategory = category.replace('-', ' ')
+
   return (
     <section className="p-6 max-w-6xl mx-auto">
-      <h1 className="text-4xl font-bold mb-6 capitalize">
-        {category.replace('-', ' ')}
-      </h1>
 
+      {/* Category Header */}
+      <header className="mb-10">
+        <h1 className="text-4xl font-bold capitalize">
+          {formattedCategory}
+        </h1>
+
+        {/* SEO intro text */}
+        <p className="mt-4 max-w-3xl text-gray-600">
+          Explore our latest <strong>{formattedCategory}</strong> articles,
+          including honest product reviews, buying guides, and practical tips
+          to help you make smarter shopping decisions.
+        </p>
+      </header>
+
+      {/* Posts Grid */}
       <div className="grid gap-8">
         {filteredPosts.map(post => (
           <Link
@@ -61,22 +81,32 @@ export default function CategoryPage({ params }) {
             )}
 
             <div className="mt-4">
-              <h2 className="text-2xl font-semibold">{post.title}</h2>
-              <p className="text-gray-500 text-sm mt-1">{post.date}</p>
-              <p className="text-gray-700 mt-2">{post.excerpt}</p>
+              <h2 className="text-2xl font-semibold">
+                {post.title}
+              </h2>
+
+              <p className="text-gray-500 text-sm mt-1">
+                {post.date}
+              </p>
+
+              <p className="text-gray-700 mt-2">
+                {post.excerpt}
+              </p>
             </div>
           </Link>
         ))}
       </div>
 
-      <div className="mt-10">
+      {/* Back Link */}
+      <div className="mt-12">
         <Link
           href="/blog"
-          className="text-indigo-600 hover:underline"
+          className="font-medium text-[#F27405] hover:underline"
         >
           ← Back to all posts
         </Link>
       </div>
+
     </section>
   )
 }
