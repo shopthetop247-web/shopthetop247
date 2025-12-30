@@ -23,7 +23,10 @@ export default function Footer() {
   }
 
   return (
-    <footer className="mt-16 border-t bg-gray-50">
+    <footer
+      role="contentinfo"
+      className="mt-16 border-t bg-gray-50"
+    >
       <div className="max-w-7xl mx-auto px-6 py-10">
 
         <div className="grid grid-cols-1 sm:grid-cols-3 gap-8">
@@ -43,6 +46,7 @@ export default function Footer() {
               helping you shop better every day.
             </p>
 
+            {/* Social Icons (shared component) */}
             <SocialIcons
               className="mt-4 text-gray-500"
               iconHoverColors={{
@@ -53,9 +57,11 @@ export default function Footer() {
             />
           </div>
 
-          {/* Links */}
-          <div>
-            <h4 className="font-semibold text-gray-800 mb-3">Explore</h4>
+          {/* Navigation */}
+          <nav aria-label="Footer navigation">
+            <h4 className="font-semibold text-gray-800 mb-3">
+              Explore
+            </h4>
 
             <ul className="space-y-2 text-sm">
               {footerLinks.map(link => {
@@ -77,11 +83,13 @@ export default function Footer() {
                 )
               })}
             </ul>
-          </div>
+          </nav>
 
           {/* Disclosure */}
           <div>
-            <h4 className="font-semibold text-gray-800 mb-3">Disclosure</h4>
+            <h4 className="font-semibold text-gray-800 mb-3">
+              Disclosure
+            </h4>
             <p className="text-sm text-gray-600">
               Some links on this site are affiliate links. We may earn a commission
               at no extra cost to you. This helps support our work.
@@ -90,12 +98,37 @@ export default function Footer() {
 
         </div>
 
+        {/* Bottom Bar */}
         <div className="mt-10 pt-6 border-t text-sm text-gray-500 flex flex-col sm:flex-row items-center justify-between">
-          <span>© {new Date().getFullYear()} ShopTheTop247®. All rights reserved.</span>
-          <span className="mt-2 sm:mt-0">Built with ❤️ for smart shoppers</span>
+          <span>
+            © {new Date().getFullYear()} ShopTheTop247®. All rights reserved.
+          </span>
+
+          <span className="mt-2 sm:mt-0">
+            Built with ❤️ for smart shoppers
+          </span>
         </div>
 
       </div>
+
+      {/* Organization Schema */}
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "Organization",
+            name: "ShopTheTop247",
+            url: "https://shopthetop247.com",
+            logo: "https://shopthetop247.com/logo.jpg",
+            sameAs: [
+              "https://www.instagram.com/shopthetop247",
+              "https://www.pinterest.com/shopthetop247/",
+              "https://facebook.com/yourpage"
+            ]
+          }),
+        }}
+      />
     </footer>
   )
 }
