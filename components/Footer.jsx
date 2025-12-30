@@ -14,6 +14,20 @@ const footerLinks = [
   { label: 'Privacy Policy', href: '/privacy' },
 ]
 
+/**
+ * BLOG CATEGORY LINKS
+ * These should point to real index pages
+ * Example: /blog/category/product-reviews
+ */
+const blogTopics = [
+  { label: 'Pets', href: '/blog/category/pets' },
+  { label: 'Health', href: '/blog/category/health' },
+  { label: 'Travel', href: '/blog/category/travel' },
+  { label: 'Technology', href: '/blog/category/technology' },
+  { label: 'Beauty', href: '/blog/category/beauty' },
+]
+
+
 export default function Footer() {
   const pathname = usePathname()
 
@@ -23,13 +37,10 @@ export default function Footer() {
   }
 
   return (
-    <footer
-      role="contentinfo"
-      className="mt-16 border-t bg-gray-50"
-    >
+    <footer role="contentinfo" className="mt-16 border-t bg-gray-50">
       <div className="max-w-7xl mx-auto px-6 py-10">
 
-        <div className="grid grid-cols-1 sm:grid-cols-3 gap-8">
+        <div className="grid grid-cols-1 sm:grid-cols-4 gap-8">
 
           {/* Brand */}
           <div>
@@ -46,7 +57,6 @@ export default function Footer() {
               helping you shop better every day.
             </p>
 
-            {/* Social Icons (shared component) */}
             <SocialIcons
               className="mt-4 text-gray-500"
               iconHoverColors={{
@@ -57,31 +67,47 @@ export default function Footer() {
             />
           </div>
 
-          {/* Navigation */}
+          {/* Explore */}
           <nav aria-label="Footer navigation">
             <h4 className="font-semibold text-gray-800 mb-3">
               Explore
             </h4>
 
             <ul className="space-y-2 text-sm">
-              {footerLinks.map(link => {
-                const active = isActive(link.href)
+              {footerLinks.map(link => (
+                <li key={link.href}>
+                  <Link
+                    href={link.href}
+                    className={`transition ${
+                      isActive(link.href)
+                        ? 'text-[#F27405] font-medium'
+                        : 'text-gray-600 hover:text-brand-accent'
+                    }`}
+                  >
+                    {link.label}
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </nav>
 
-                return (
-                  <li key={link.href}>
-                    <Link
-                      href={link.href}
-                      className={`transition ${
-                        active
-                          ? 'text-[#F27405] font-medium'
-                          : 'text-gray-600 hover:text-brand-accent'
-                      }`}
-                    >
-                      {link.label}
-                    </Link>
-                  </li>
-                )
-              })}
+          {/* Blog Topics (SEO POWER) */}
+          <nav aria-label="Blog topics">
+            <h4 className="font-semibold text-gray-800 mb-3">
+              Blog Topics
+            </h4>
+
+            <ul className="space-y-2 text-sm">
+              {blogTopics.map(topic => (
+                <li key={topic.href}>
+                  <Link
+                    href={topic.href}
+                    className="text-gray-600 hover:text-brand-accent transition"
+                  >
+                    {topic.label}
+                  </Link>
+                </li>
+              ))}
             </ul>
           </nav>
 
@@ -98,12 +124,10 @@ export default function Footer() {
 
         </div>
 
-        {/* Bottom Bar */}
         <div className="mt-10 pt-6 border-t text-sm text-gray-500 flex flex-col sm:flex-row items-center justify-between">
           <span>
             © {new Date().getFullYear()} ShopTheTop247®. All rights reserved.
           </span>
-
           <span className="mt-2 sm:mt-0">
             Built with ❤️ for smart shoppers
           </span>
