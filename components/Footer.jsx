@@ -3,7 +3,7 @@
 import Link from 'next/link'
 import Image from 'next/image'
 import { usePathname } from 'next/navigation'
-import SocialIcons from '@/components/SocialIcons'
+import SocialIcons from './SocialIcons'
 
 const footerLinks = [
   { label: 'Home', href: '/' },
