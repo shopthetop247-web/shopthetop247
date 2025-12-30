@@ -1,35 +1,33 @@
-import { getAllPosts } from '../lib/posts'
-import { getAllProducts } from '../lib/products'
+import { getAllPosts, getAllCategories } from '../lib/posts'
 
 export default function sitemap() {
   const baseUrl = 'https://shopthetop247.com'
 
-  // Static pages
   const staticPages = [
     '',
     '/blog',
     '/about',
     '/contact',
-  ].map(path => ({
-    url: `${baseUrl}${path}`,
-    lastModified: new Date(),
-  }))
+    '/privacy',
+    '/terms',
+  ]
 
-  // Blog posts
-  const posts = getAllPosts().map(post => ({
+  const blogPosts = getAllPosts().map(post => ({
     url: `${baseUrl}/blog/${post.slug}`,
-    lastModified: post.date ? new Date(post.date) : new Date(),
+    lastModified: post.date,
   }))
 
-  // Product pages
-  const products = getAllProducts().map(product => ({
-    url: `${baseUrl}/products/${product.id}`,
+  const categoryPages = getAllCategories().map(category => ({
+    url: `${baseUrl}/blog/category/${category.toLowerCase()}`,
     lastModified: new Date(),
   }))
 
   return [
-    ...staticPages,
-    ...posts,
-    ...products,
+    ...staticPages.map(path => ({
+      url: `${baseUrl}${path}`,
+      lastModified: new Date(),
+    })),
+    ...blogPosts,
+    ...categoryPages,
   ]
 }
