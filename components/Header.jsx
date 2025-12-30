@@ -4,7 +4,7 @@ import { useState } from 'react'
 import { useRouter, usePathname } from 'next/navigation'
 import Link from 'next/link'
 import Image from 'next/image'
-import SocialIcons from '@/components/SocialIcons'
+import SocialIcons from './SocialIcons'
 
 const navItems = [
   { label: 'Home', href: '/' },
